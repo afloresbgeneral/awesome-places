@@ -9,6 +9,7 @@ import { LocationModel } from '../../models/location-model';
 })
 export class SetLocationPage {
 
+  isLocationSet: boolean;
   location: LocationModel;
   marker: LocationModel;
 
@@ -16,6 +17,11 @@ export class SetLocationPage {
               public navParams: NavParams,
               public viewController: ViewController) {
                     this.location = this.navParams.get('location');
+                    if(this.navParams.get('isLocationSet')){
+                      this.marker = this.location;
+                    }
+                    
+
   }
 
   ionViewDidLoad() {
