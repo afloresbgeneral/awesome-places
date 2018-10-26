@@ -54,15 +54,16 @@ export class AddPlacePage {
   }
 
   onLocate() {
+    console.log('hi from locate');
     const loading = this.loadingController.create({
       content: 'Loadging location...'
     });
     loading.present();
     this.geolocation.getCurrentPosition()
       .then(
-        location => {
+        (location) => {
           loading.dismiss();
-          console.log(location);
+          console.log('location', location);
           this.isLocationSet = true;
           this.location.lat = location.coords.latitude;
           this.location.lng = location.coords.longitude;
@@ -70,12 +71,12 @@ export class AddPlacePage {
         }
       )
       .catch(
-        error => {
+        (error) => {
+          loading.dismiss();
           console.log(error);
           this.handleNotification(error.message)
         }
       );
-      loading.dismiss();
   }
 
 }
