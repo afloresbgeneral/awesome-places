@@ -17,8 +17,12 @@
           </ion-card-title>
           <p>{{place.description}}</p>
           <div>
-            <ion-icon *ngIf="!showMap" name="add" (click)="toggleMap()">Ver en mapa</ion-icon>
-            <ion-icon *ngIf="showMap" name="remove" (click)="toggleMap()">Ocultar</ion-icon>
+            <button ion-button round icon-start (click)="toggleMap()">
+                <ion-icon class="show" *ngIf="!showMap" name="add"></ion-icon>
+                <ion-label fixed *ngIf="!showMap">Show map</ion-label>
+                <ion-icon class="show" *ngIf="showMap" name="remove"></ion-icon>
+                <ion-label fixed *ngIf="showMap">Hide</ion-label>
+            </button>
             <agm-map *ngIf="showMap"
               [latitude]="place.location.lat"
               [longitude]="place.location.lng"

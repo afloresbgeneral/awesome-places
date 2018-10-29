@@ -22,6 +22,7 @@ export class PlacePage {
   }
 
   toggleMap() {
+    console.log('toggle');
     this.showMap = !this.showMap;
   }
 
