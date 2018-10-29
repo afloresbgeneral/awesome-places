@@ -12,6 +12,7 @@ import { AddPlacePage } from '../pages/add-place/add-place';
 import { AgmCoreModule } from '@agm/core' 
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera'
+import { PlacesService } from '../services/places.service';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { Camera } from '@ionic-native/camera'
   ],
   providers: [
     StatusBar,
+    PlacesService,
     Camera,
     Geolocation,
     SplashScreen,

@@ -6,6 +6,7 @@ import { LocationModel } from '../../models/location-model';
 import { Geolocation } from '@ionic-native/geolocation'
 import { Camera } from '@ionic-native/camera';
 import { normalizeURL } from 'ionic-angular'; 
+import { PlacesService } from '../../services/places.service';
 
 
 
@@ -30,13 +31,23 @@ export class AddPlacePage {
               public geolocation: Geolocation,
               public loadingController: LoadingController,
               public toastController: ToastController,
-              public camera: Camera) {
+              public camera: Camera,
+              public placesService: PlacesService) {
           
 
   }
 
   onSubmit(form: NgForm){
     console.log(form.value);
+    this.placesService.addPlace(form.value.title, form.value.description,
+                                this.location, this.imageUrl);
+    form.reset();
+    this.location = {
+      lat: 9.0233586,
+      lng: -79.5311765
+    };
+    this.imageUrl = '';
+    this.isLocationSet = false
   }
 
   onOpenMap(){
