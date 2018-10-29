@@ -4,6 +4,11 @@ import { NgForm } from '../../../node_modules/@angular/forms';
 import { SetLocationPage } from '../set-location/set-location';
 import { LocationModel } from '../../models/location-model';
 import { Geolocation } from '@ionic-native/geolocation'
+import { Camera } from '@ionic-native/camera';
+import { normalizeURL } from 'ionic-angular'; 
+
+
+
 
 @IonicPage()
 @Component({
@@ -13,6 +18,7 @@ import { Geolocation } from '@ionic-native/geolocation'
 export class AddPlacePage {
 
   isLocationSet: boolean = false;
+  imageUrl='';
   location: LocationModel = {
     lat: 9.0233586,
     lng: -79.5311765
@@ -23,7 +29,8 @@ export class AddPlacePage {
               public modalController: ModalController,
               public geolocation: Geolocation,
               public loadingController: LoadingController,
-              public toastController: ToastController) {
+              public toastController: ToastController,
+              public camera: Camera) {
           
 
   }
@@ -77,6 +84,29 @@ export class AddPlacePage {
           this.handleNotification(error.message)
         }
       );
+  }
+
+  onTakePhoto(){
+    this.camera.getPicture({
+      destinationType: this.camera.DestinationType.FILE_URI,
+      mediaType: this.camera.MediaType.PICTURE,
+      quality: 100,
+      encodingType: this.camera.EncodingType.JPEG,
+      correctOrientation: true
+    })
+    .then(
+      (imageData) =>{
+        console.log(imageData);
+        if(imageData){
+          this.imageUrl =  normalizeURL(imageData);
+        }
+      }
+    )
+    .catch(
+      err => {
+        console.log(err)
+      }
+    );
   }
 
 }
