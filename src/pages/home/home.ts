@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { AddPlacePage } from '../add-place/add-place';
 import { PlaceModel } from '../../models/place-module';
 import { PlacesService } from '../../services/places.service';
+import { PlacePage } from '../place/place';
 
 @Component({
   selector: 'page-home',
@@ -19,6 +20,10 @@ export class HomePage {
   ionViewWillEnter(){
     console.log('Hi from home will enter', this.places);
     this.places = this.placesService.loadPlaces();
+  }
+
+  onOpenPlace(placeInfo: PlaceModel) {
+    this.navCtrl.push(PlacePage, {place: placeInfo});
   }
 
 }
