@@ -22,8 +22,8 @@ export class HomePage {
     this.places = this.placesService.loadPlaces();
   }
 
-  onOpenPlace(placeInfo: PlaceModel) {
-    this.navCtrl.push(PlacePage, {place: placeInfo});
+  onOpenPlace(placeInfo: PlaceModel, index: number) {
+    this.navCtrl.push(PlacePage, {place: placeInfo, index: index});
   }
 
 }

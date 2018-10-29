@@ -14,4 +14,8 @@ export class PlacesService {
         console.log('places loaded', this.places);
         return this.places.slice();
     }
+
+    deletePlace(index: number) {
+        this.places.splice(index,1);
+    }
 }
