@@ -14,7 +14,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera'
 import { PlacesService } from '../services/places.service';
 import { File } from '@ionic-native/File';
-
+import { IonicStorageModule } from '@ionic/storage';
 
 
 @NgModule({
@@ -29,6 +29,7 @@ import { File } from '@ionic-native/File';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBsnC3qCjSrceZ5mMGsk_aJeDXaZbXv7Uk'
     })
